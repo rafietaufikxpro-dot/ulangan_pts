@@ -1,5 +1,8 @@
 <?php
 include 'config.php';
+$alert = null; 
+
+$id = $_GET['id'] ?? null;
 
 // get id from query string and load record before showing form
 $id = $_GET['id'] ?? null;
@@ -143,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $id) {
             window.location.href = 'admin.php';
         });
     </script>
-    <?php elseif (str_starts_with($alert, 'error')): ?>
+<?php elseif ($alert !== null && str_starts_with($alert, 'error')): ?>
     <script>
         Swal.fire({
             title: 'Gagal!',

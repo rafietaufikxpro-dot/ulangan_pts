@@ -7,15 +7,15 @@ include 'config.php';
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - OnePage Bootstrap Template</title>
+  <title>Zakat Masjid Riydho Solihin</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/logo zakat.png" rel="icon">
+  <link href="assets/img/logo zakat.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -48,7 +48,7 @@ include 'config.php';
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <img  src="assets/img/logo zakat.png" alt="Zakat Masjid Riydho Solihin" width="50px" height="50px">
         <h1 class="sitename">Zakat Masjid Riydho Solihin</h1>
       </a>
 
@@ -248,57 +248,6 @@ include 'config.php';
 
     </section><!-- /About Section -->
 
-    <!-- Clients Section -->
-   
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
-
-      <!-- Section Title -->
-      
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 20
-                }
-              }
-            }
-          </script>
-        
-          
-            
-
-    <!-- Services Section -->
-   
-    <!-- Call To Action Section -->
-   
-
-    <!-- Portfolio Section -->
-   
-    <!-- Team Section -->
-    
-    <!-- Pricing Section -->
-   
 
     <!-- Faq Section -->
     <section id="faq" class="faq section light-background">
@@ -690,8 +639,8 @@ include 'config.php';
 </script>
 
 <!-- Main JS File -->
-<script src="assets/js/main.js"></script>
-</body>
+
+
 
 </body>
 
