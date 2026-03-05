@@ -159,7 +159,7 @@ include 'config.php';
                           $row = mysqli_fetch_assoc($query);
                           echo $row['total'];
                           ?></span>
-              <p>total orang yeng telah zakat</p>
+              <p>total orang yang telah zakat</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -210,7 +210,7 @@ include 'config.php';
      <!-- About Section -->
     <section id="about" class="about section">
        <div class="container justify-content-center" data-aos="fade-up">
-        <h1 class="text-center">Daftar Zakat</h1>
+        <h1 class="text-center">Daftar Orang yang Telah Melakukan Zakat</h1>
  <table class="table table-striped table-hover">
     <thead class="table tablezakat">
         <tr>
