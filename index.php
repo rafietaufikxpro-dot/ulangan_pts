@@ -387,7 +387,140 @@ include 'config.php';
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="zakat-calculator">
 
+  <!-- Tabs -->
+  <div class="zakat-calc-tabs">
+    <button class="zakat-tab-btn active" onclick="switchTab('fitrah', this)">
+      🌙 Zakat Fitrah
+    </button>
+    <button class="zakat-tab-btn" onclick="switchTab('maal', this)">
+      💰 Zakat Maal
+    </button>
+    <button class="zakat-tab-btn" onclick="switchTab('penghasilan', this)">
+      📋 Zakat Penghasilan
+    </button>
+  </div>
+
+  <div class="zakat-calc-body">
+
+    <!-- Panel: Zakat Fitrah -->
+    <div class="zakat-panel active" id="panel-fitrah">
+      <div class="zakat-nisab-info">
+        <strong>ℹ️ Zakat Fitrah</strong><br>
+        Besarnya <strong>2,5 kg atau 3,5 liter beras</strong> per jiwa. Dapat dibayar dengan uang setara harga beras di daerah Anda.
+      </div>
+
+      <div class="zakat-row">
+        <div class="zakat-input-wrap">
+          <label class="zakat-label">Jumlah Jiwa (Tanggungan)</label>
+          <input type="number" id="jiwa" class="zakat-input no-prefix" placeholder="contoh: 4" min="1" value="1">
+        </div>
+        <div class="zakat-input-wrap">
+          <label class="zakat-label">Harga Beras per KG (Rp)</label>
+          <span class="prefix">Rp</span>
+          <input type="number" id="harga-beras" class="zakat-input" placeholder="contoh: 14000" value="14000">
+        </div>
+      </div>
+
+      <button class="zakat-calc-btn" onclick="hitungFitrah()">⚡ Hitung Zakat Fitrah</button>
+
+      <div class="zakat-result" id="result-fitrah">
+        <div class="zakat-result-header">
+          <p>Total Zakat Fitrah yang Harus Dibayar</p>
+          <h4 id="hasil-fitrah-uang">Rp 0</h4>
+        </div>
+        <div class="zakat-result-body">
+          <div class="zakat-result-row"><span>Jumlah Jiwa</span><span id="r-jiwa">-</span></div>
+          <div class="zakat-result-row"><span>Beras per Jiwa</span><span>2.5 kg</span></div>
+          <div class="zakat-result-row"><span>Total Beras</span><span id="r-total-beras">-</span></div>
+          <div class="zakat-result-row"><span>Harga Beras/kg</span><span id="r-harga-beras">-</span></div>
+          <span class="zakat-wajib-badge">✅ Wajib Dibayar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel: Zakat Maal -->
+    <div class="zakat-panel" id="panel-maal">
+      <div class="zakat-nisab-info">
+        <strong>ℹ️ Zakat Maal</strong><br>
+        Wajib jika total harta ≥ <strong>nisab (85 gram emas)</strong> dan sudah dimiliki selama 1 tahun (haul). Kadar zakat: <strong>2,5%</strong>.
+      </div>
+
+      <div class="zakat-row">
+        <div class="zakat-input-wrap">
+          <label class="zakat-label">Total Harta (Rp)</label>
+          <span class="prefix">Rp</span>
+          <input type="number" id="total-harta" class="zakat-input" placeholder="contoh: 50000000">
+        </div>
+        <div class="zakat-input-wrap">
+          <label class="zakat-label">Harga Emas per Gram (Rp)</label>
+          <span class="prefix">Rp</span>
+          <input type="number" id="harga-emas" class="zakat-input" placeholder="contoh: 1000000" value="1000000">
+        </div>
+      </div>
+
+      <button class="zakat-calc-btn" onclick="hitungMaal()">⚡ Hitung Zakat Maal</button>
+
+      <div class="zakat-result" id="result-maal">
+        <div class="zakat-result-header">
+          <p>Zakat Maal yang Harus Dibayar</p>
+          <h4 id="hasil-maal">Rp 0</h4>
+        </div>
+        <div class="zakat-result-body">
+          <div class="zakat-result-row"><span>Total Harta</span><span id="r-harta">-</span></div>
+          <div class="zakat-result-row"><span>Nisab (85 gr emas)</span><span id="r-nisab">-</span></div>
+          <div class="zakat-result-row"><span>Status</span><span id="r-status-maal">-</span></div>
+          <div class="zakat-result-row"><span>Kadar Zakat</span><span>2.5%</span></div>
+          <span id="badge-maal" class="zakat-wajib-badge">✅ Wajib Zakat</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel: Zakat Penghasilan -->
+    <div class="zakat-panel" id="panel-penghasilan">
+      <div class="zakat-nisab-info">
+        <strong>ℹ️ Zakat Penghasilan / Profesi</strong><br>
+        Wajib jika penghasilan ≥ <strong>nisab (520 kg beras)</strong> per tahun. Kadar zakat: <strong>2,5%</strong> dari penghasilan bersih.
+      </div>
+
+      <div class="zakat-row">
+        <div class="zakat-input-wrap">
+          <label class="zakat-label">Penghasilan per Bulan (Rp)</label>
+          <span class="prefix">Rp</span>
+          <input type="number" id="gaji" class="zakat-input" placeholder="contoh: 5000000">
+        </div>
+        <div class="zakat-input-wrap">
+          <label class="zakat-label">Pengeluaran Pokok/Bulan (Rp)</label>
+          <span class="prefix">Rp</span>
+          <input type="number" id="pengeluaran" class="zakat-input" placeholder="contoh: 2000000">
+        </div>
+      </div>
+      <div class="zakat-input-wrap">
+        <label class="zakat-label">Harga Beras per KG (untuk nisab)</label>
+        <span class="prefix">Rp</span>
+        <input type="number" id="harga-beras-p" class="zakat-input" placeholder="contoh: 14000" value="14000">
+      </div>
+
+      <button class="zakat-calc-btn" onclick="hitungPenghasilan()">⚡ Hitung Zakat Penghasilan</button>
+
+      <div class="zakat-result" id="result-penghasilan">
+        <div class="zakat-result-header">
+          <p>Zakat Penghasilan per Bulan</p>
+          <h4 id="hasil-penghasilan">Rp 0</h4>
+        </div>
+        <div class="zakat-result-body">
+          <div class="zakat-result-row"><span>Penghasilan Bersih/Bulan</span><span id="r-bersih">-</span></div>
+          <div class="zakat-result-row"><span>Penghasilan Bersih/Tahun</span><span id="r-bersih-tahun">-</span></div>
+          <div class="zakat-result-row"><span>Nisab (520 kg beras/tahun)</span><span id="r-nisab-p">-</span></div>
+          <div class="zakat-result-row"><span>Status</span><span id="r-status-p">-</span></div>
+          <span id="badge-penghasilan" class="zakat-wajib-badge">✅ Wajib Zakat</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /zakat-calc-body -->
+</div><!-- /zakat-calculator -->
       
       </div>
 
@@ -480,6 +613,85 @@ include 'config.php';
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+ <script>
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.zakat-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.zakat-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+
+  function formatRp(num) {
+    return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+  }
+
+  function hitungFitrah() {
+    const jiwa = parseFloat(document.getElementById('jiwa').value) || 0;
+    const hargaBeras = parseFloat(document.getElementById('harga-beras').value) || 0;
+    const totalBeras = jiwa * 2.5;
+    const totalUang = totalBeras * hargaBeras;
+
+    document.getElementById('hasil-fitrah-uang').textContent = formatRp(totalUang);
+    document.getElementById('r-jiwa').textContent = jiwa + ' orang';
+    document.getElementById('r-total-beras').textContent = totalBeras + ' kg';
+    document.getElementById('r-harga-beras').textContent = formatRp(hargaBeras);
+
+    const result = document.getElementById('result-fitrah');
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hitungMaal() {
+    const harta = parseFloat(document.getElementById('total-harta').value) || 0;
+    const hargaEmas = parseFloat(document.getElementById('harga-emas').value) || 0;
+    const nisab = 85 * hargaEmas;
+    const wajib = harta >= nisab;
+    const zakatMaal = wajib ? harta * 0.025 : 0;
+
+    document.getElementById('hasil-maal').textContent = wajib ? formatRp(zakatMaal) : 'Belum Wajib';
+    document.getElementById('r-harta').textContent = formatRp(harta);
+    document.getElementById('r-nisab').textContent = formatRp(nisab);
+    document.getElementById('r-status-maal').textContent = wajib ? 'Mencapai Nisab ✅' : 'Belum Mencapai Nisab ❌';
+
+    const badge = document.getElementById('badge-maal');
+    badge.className = wajib ? 'zakat-wajib-badge' : 'zakat-tidak-wajib-badge';
+    badge.textContent = wajib ? '✅ Wajib Zakat' : '❌ Belum Wajib Zakat';
+
+    const result = document.getElementById('result-maal');
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hitungPenghasilan() {
+    const gaji = parseFloat(document.getElementById('gaji').value) || 0;
+    const pengeluaran = parseFloat(document.getElementById('pengeluaran').value) || 0;
+    const hargaBeras = parseFloat(document.getElementById('harga-beras-p').value) || 0;
+
+    const bersih = gaji - pengeluaran;
+    const bersihTahun = bersih * 12;
+    const nisabTahun = 520 * hargaBeras;
+    const wajib = bersihTahun >= nisabTahun;
+    const zakatBulan = wajib ? bersih * 0.025 : 0;
+
+    document.getElementById('hasil-penghasilan').textContent = wajib ? formatRp(zakatBulan) + '/bln' : 'Belum Wajib';
+    document.getElementById('r-bersih').textContent = formatRp(bersih);
+    document.getElementById('r-bersih-tahun').textContent = formatRp(bersihTahun);
+    document.getElementById('r-nisab-p').textContent = formatRp(nisabTahun);
+    document.getElementById('r-status-p').textContent = wajib ? 'Mencapai Nisab ✅' : 'Belum Mencapai Nisab ❌';
+
+    const badge = document.getElementById('badge-penghasilan');
+    badge.className = wajib ? 'zakat-wajib-badge' : 'zakat-tidak-wajib-badge';
+    badge.textContent = wajib ? '✅ Wajib Zakat' : '❌ Belum Wajib Zakat';
+
+    const result = document.getElementById('result-penghasilan');
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+</body>
 
 </body>
 
